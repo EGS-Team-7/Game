@@ -5,13 +5,13 @@ using UnityEngine;
 public class Tiler : MonoBehaviour
 {
     public GameObject backGround;
-    public bool enabled = false;
+    public bool tiling = false;
 
     public GameObject current;
 
     private void Start()
     {
-        enabled = false;
+        tiling = false;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -19,7 +19,7 @@ public class Tiler : MonoBehaviour
         if (other.gameObject.layer == 12)
         {
             current = other.gameObject;
-            enabled = true;
+            tiling = true;
         }
     }
 
