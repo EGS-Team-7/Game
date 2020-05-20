@@ -4843,7 +4843,7 @@ GameObject:
   - component: {fileID: 1758699830771452360}
   m_Layer: 11
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14785,7 +14785,6 @@ MonoBehaviour:
   - {fileID: 1758699831063050908}
   activeShot: 0
   speed: 10
-  fireRate: 1
   dif: 0
   angle: 0
   ShotUI:
@@ -14793,6 +14792,9 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   Selector: {fileID: 0}
+  _defaultShotThreshold: 0
+  _spreadShotThreshold: 500
+  _guidedShotThreshold: 1000
 --- !u!82 &1758699831207451244
 AudioSource:
   m_ObjectHideFlags: 0
