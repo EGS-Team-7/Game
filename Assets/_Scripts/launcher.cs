@@ -47,7 +47,7 @@ public class launcher : MonoBehaviour
     GameManager gameManager;            // Where the score is stored and checked
 
     // THRESHOLDS
-    // [SerializeField] private int _defaultShotThreshold = 0;     // How long until the player unlocks the default shot
+    [SerializeField] private int _defaultShotThreshold = 0;     // How long until the player unlocks the default shot
     [SerializeField] private int _spreadShotThreshold = 500;    // How long until the player unlocks the spread shot
     [SerializeField] private int _guidedShotThreshold = 1000;   // How long until the player unlocks the guided shot
 
@@ -100,27 +100,32 @@ public class launcher : MonoBehaviour
     /// </summary>
     void ShotChange()
     {
-        // Always allow checking if the player selects the default shot-type
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+
+        // After the player has earned _default_ points, they may select the default shot-type
+        if(gameManager.score >= _defaultShotThreshold)
         {
-            // Set the shot-type to default
-            activeShot = 0;
-
-            // Move the selector (a UI rectangle) over to the default shots's position
-            Selector.localPosition = new Vector3(-50, -204.5f, 0);
-
-            // Activate the shot sound
-            Selector.gameObject.GetComponent<AudioSource>().Play();
-
-            // Deactivate all shots
-            // (WHY?)
-            for (int i = 1; i < shot.Length; i++)
+            // Always allow checking if the player selects the default shot-type
+            if (Input.GetKeyDown(KeyCode.Alpha1))
             {
-                shot[i].gameObject.SetActive(false);
+                // Set the shot-type to default
+                activeShot = 0;
+
+                // Move the selector (a UI rectangle) over to the default shots's position
+                Selector.localPosition = new Vector3(-50, -204.5f, 0);
+
+                // Activate the shot sound
+                Selector.gameObject.GetComponent<AudioSource>().Play();
+
+                // Deactivate all shots
+                // (WHY?)
+                for (int i = 1; i < shot.Length; i++)
+                {
+                    shot[i].gameObject.SetActive(false);
+                }
             }
         }
 
-        // After the player has earned 500 points, they may select the spread shot-type
+        // After the player has earned _spread_ points, they may select the spread shot-type
         if(gameManager.score >= _spreadShotThreshold)
         {
             // Show the spread shot-type in the UI
@@ -152,7 +157,7 @@ public class launcher : MonoBehaviour
             }
         }
 
-        // After the player has earned 1000 points, they may select the guided shot-type
+        // After the player has earned _guided_ points, they may select the guided shot-type
         if (gameManager.score >= _guidedShotThreshold)
         {
             // Show the guided shot-type in the UI
@@ -274,4 +279,21 @@ public class launcher : MonoBehaviour
             em.enabled = false;
         }
     }
+
+
+
+
+    /// <summary>
+    /// Allows other classes to change when the player can unlock new shot-types
+    /// </summary>
+    public void UpdateThresholds(List<int> newThresholds)
+    {
+        _defaultShotThreshold = newThresholds[0];
+        _spreadShotThreshold = newThresholds[1];
+        _guidedShotThreshold = newThresholds[2];
+    }
+
+
+
+
 }
