@@ -136,6 +136,9 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("Player launcher unreachable");
         }
+
+        // Also load in any additional references we need, for in-game scenes
+        LoadInGame();
     }
 
 
@@ -144,9 +147,36 @@ public class GameManager : MonoBehaviour
     /// </summary>
     private void LoadInGame()
     {
-        scoreText = GameObject.Find("InGameUICanvas").transform.Find("ScoreText").GetComponent<TextMeshPro>();
-        part = GameObject.Find("InGameCamera").transform.Find("ScoreParticles").GetComponent<ParticleSystem>();
-        gameOver = GameObject.Find("InGameUICanvas").transform.Find("PlayerDeath").gameObject;
+        // Score Text
+        try
+        {
+            //scoreText = GameObject.Find("InGameUICanvas").transform.Find("ScoreText").GetComponent<TextMeshPro>();
+            scoreText = GameObject.Find("InGameUICanvas").transform.Find("ScoreText").GetComponent<TMP_Text>();
+        }
+        catch
+        {
+            Debug.Log("could not find score text");
+        }
+
+        // Score particles
+        try
+        {
+            part = GameObject.Find("InGameCamera").transform.Find("ScoreParticles").GetComponent<ParticleSystem>();
+        }
+        catch
+        {
+            Debug.Log("Could not find score particles");
+        }
+
+        // Death UI
+        try
+        {
+            gameOver = GameObject.Find("InGameUICanvas").transform.Find("PlayerDeath").gameObject;
+        }
+        catch
+        {
+            Debug.Log("Could not find player death UI");
+        }
     }
 
 

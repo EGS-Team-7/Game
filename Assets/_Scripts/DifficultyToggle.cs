@@ -29,7 +29,8 @@ public class DifficultyToggle : MonoBehaviour
     [Header("Changes the Difficulty Mode")]
 
     private GameManager _gameManager;           // Where the difficulty is set
-    private TextMeshPro _difficultyModeText;    // Where we communicate the selected difficulty
+    //private TextMeshPro _difficultyModeText;    // Where we communicate the selected difficulty
+    private TMP_Text _difficultyModeText;    // Where we communicate the selected difficulty
 
 
 
@@ -47,7 +48,8 @@ public class DifficultyToggle : MonoBehaviour
         }
 
         // Find our Text Component
-        _difficultyModeText = gameObject.transform.Find("DifficultyText (TMP)").GetComponent<TextMeshPro>();
+        // _difficultyModeText = gameObject.transform.Find("DifficultyText (TMP)").GetComponent<TextMeshPro>();
+        _difficultyModeText = gameObject.transform.Find("DifficultyText (TMP)").GetComponent<TMP_Text>();
         _difficultyModeText.SetText("LOADED");
 
         // Request the Difficulty mode from the GameManager

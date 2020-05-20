@@ -50,13 +50,13 @@ public class Difficulty : MonoBehaviour
 
 
 
-
+    /* REMOVED: Is adding duplicates!
     public void Awake()
     {
         // Do not destroy this object, ever!
         DontDestroyOnLoad(gameObject);
     }
-
+    */
 
 
 
