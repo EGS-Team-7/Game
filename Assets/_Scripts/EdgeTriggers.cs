@@ -25,7 +25,7 @@ public class EdgeTriggers : MonoBehaviour
         {
             //if (Void == "Center")
             //tile.Center();
-            if (tile.enabled == true)
+            if (tile.tiling == true)
             {
                 if (spawn == true)
                 {

@@ -8,7 +8,14 @@ public class EnemyShot : MonoBehaviour
 
     private void Start()
     {
-        gameManager = FindObjectOfType<GameManager>().GetComponent<GameManager>();
+        try
+        {
+            gameManager = FindObjectOfType<GameManager>().GetComponent<GameManager>();
+        }
+        catch
+        {
+            Debug.Log("No Gamemanager found");
+        }
     }
 
     private void OnParticleCollision(GameObject other)
