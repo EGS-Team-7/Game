@@ -30,7 +30,7 @@ public class Shot : MonoBehaviour
             }
 
             // Tell the Gamemanager
-            gameManager.score += val;
+            gameManager.AddScore(val);
             gameManager.Score();
 
             // Kill the target

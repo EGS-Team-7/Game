@@ -211,6 +211,14 @@ public class GameManager : MonoBehaviour
 
 
 
+    public void AddScore(int newScore)
+    {
+        _gameManager.score += newScore;
+        Debug.Log("Adding: " + newScore);
+    }
+
+
+
 
     /// <summary>
     /// When the player dies
@@ -259,4 +267,17 @@ public class GameManager : MonoBehaviour
         // Finally, send back the name of the difficulty
         return _currentDifficulty.Name();
     }
+
+
+
+    public int GetScore()
+    {
+        Debug.Log("MANAGER: SCORE:  " + score);
+        return score;
+    }
+
+
+
+
+
 }
