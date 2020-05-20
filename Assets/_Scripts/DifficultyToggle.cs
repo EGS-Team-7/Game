@@ -87,7 +87,6 @@ public class DifficultyToggle : MonoBehaviour
         catch
         {
             Debug.Log("Cannot set difficulty");
-            //_difficultyModeText.text = "???";
             _difficultyModeText.SetText("???");
         }
     }
