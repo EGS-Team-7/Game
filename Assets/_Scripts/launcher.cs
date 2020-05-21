@@ -100,7 +100,6 @@ public class launcher : MonoBehaviour
     /// </summary>
     void ShotChange()
     {
-        // Debug.Log("SCORE: " + gameManager.score + " THRESH: " + _guidedShotThreshold);
         CheckDefault();
         CheckSpread();
         CheckGuided();
@@ -112,8 +111,10 @@ public class launcher : MonoBehaviour
     private void CheckDefault()
     {
         // After the player has earned _default_ points, they may select the default shot-type
-        if (gameManager.GetScore() >= _defaultShotThreshold)
+        if (/* gameManager.score */ FindObjectOfType<GameManager>().GetComponent<GameManager>().score >= _defaultShotThreshold)
         {
+            Debug.Log("UNLOCKED: Defaultshot");
+
             // Always allow checking if the player selects the default shot-type
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
@@ -143,8 +144,10 @@ public class launcher : MonoBehaviour
     private void CheckSpread()
     {
         // After the player has earned _spread_ points, they may select the spread shot-type
-        if (gameManager.GetScore() >= _spreadShotThreshold)
-        { 
+        if (/* gameManager.score */ FindObjectOfType<GameManager>().GetComponent<GameManager>().score >= _spreadShotThreshold)
+        {
+            Debug.Log("UNLOCKED: Spreadshot");
+
             // Show the spread shot-type in the UI
             ShotUI[1].SetActive(true);
 
@@ -173,15 +176,23 @@ public class launcher : MonoBehaviour
                 }
             }
         }
+        else
+        {
+            Debug.Log("FFFFFF");
+        }
     }
 
 
 
     private void CheckGuided()
     {
+        Debug.Log("SCORE: " + gameManager.score + " THRESH: " + _guidedShotThreshold);
+
         // After the player has earned _guided_ points, they may select the guided shot-type
-        if (gameManager.GetScore() >= _guidedShotThreshold)
+        if (/* gameManager.score */ FindObjectOfType<GameManager>().GetComponent<GameManager>().score >= _guidedShotThreshold)
         {
+            Debug.Log("UNLOCKED: Guidedshot");
+
             // Show the guided shot-type in the UI
             ShotUI[2].SetActive(true);
 
